@@ -5,26 +5,28 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#define WIDTH  800
+#define HEIGHT 600
+
 int
 main(void)
 {
-    glfwInit();
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	glfwInit();
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan window", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Triangle", NULL, NULL);
 
-    uint32_t extensionCount = 0;
-    vkEnumerateInstanceExtensionProperties(NULL, &extensionCount, NULL);
+	uint32_t extensionCount = 0;
+	vkEnumerateInstanceExtensionProperties(NULL, &extensionCount, NULL);
 
-    printf("%u extensions supported\n", extensionCount);
+	printf("%u extensions supported\n", extensionCount);
 
-    while(!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-    }
+	while(!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+	}
 
-    glfwDestroyWindow(window);
+	glfwTerminate();
 
-    glfwTerminate();
-
-    return 0;
+	return 0;
 }
